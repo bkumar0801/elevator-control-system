@@ -5,14 +5,14 @@ import (
 )
 
 func main() {
-	c := elv.NewConstrolSystem(2, 10)
-	c.AddElevator(elv.NewElevator(100, 0))
-	c.AddElevator(elv.NewElevator(200, 0))
+	cs := elv.NewConstrolSystem(2, 10)
+	cs.AddElevator(elv.NewElevator(100, 0))
+	cs.AddElevator(elv.NewElevator(200, 0))
 
-	c.PickUp(3, elv.UP)
-	c.PickUp(4, elv.UP)
+	cs.PickUp(3, elv.UP)
+	cs.PickUp(4, elv.UP)
 
 	for i := 0; i < 5; i++ {
-		c.Step(1)
+		cs.Step(1)
 	}
 }

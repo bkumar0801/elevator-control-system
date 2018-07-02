@@ -7,9 +7,9 @@ import (
 func TestNewElevatorInitialization(t *testing.T) {
 
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 
 	if el.CurrentFloor != startingFloor {
 		t.Error("After initializiation currentFloor should be startingFloor but was:", el.CurrentFloor)
@@ -23,21 +23,21 @@ func TestNewElevatorInitialization(t *testing.T) {
 		t.Error("After initializiation Goals should be empty but was:", el.Goals.Len())
 	}
 
-	if el.ID != elevatorId {
+	if el.ID != elevatorID {
 		t.Error("After initializiation Direction should be IDLE(0) but was:", el.Direction)
 	}
 }
 
 func TestElevatorAddGoal(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	callingFloor := 3
 	direction := UP
 	priority := 5.0
 
 	req := NewRequest(callingFloor, direction)
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 
 	el.AddGoal(req, priority)
 
@@ -53,14 +53,14 @@ func TestElevatorAddGoal(t *testing.T) {
 
 func TestElevatorStep(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	callingFloor := 3
 	direction := UP
 	priority := 5.0
 
 	req := NewRequest(callingFloor, direction)
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 	el.AddGoal(req, priority)
 
 	el.Step()
@@ -81,14 +81,14 @@ func TestElevatorStep(t *testing.T) {
 
 func TestElevatorStepsUntilGoal(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	callingFloor := 3
 	direction := UP
 	priority := 5.0
 
 	req := NewRequest(callingFloor, direction)
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 	el.AddGoal(req, priority)
 	el.Step()
 	el.Step()
@@ -107,14 +107,14 @@ func TestElevatorStepsUntilGoal(t *testing.T) {
 
 func TestElevatorStepsAfterGoal(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	callingFloor := 3
 	direction := UP
 	priority := 5.0
 
 	req := NewRequest(callingFloor, direction)
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 	el.AddGoal(req, priority)
 	el.Step()
 	el.Step()
@@ -136,13 +136,13 @@ func TestElevatorStepsAfterGoal(t *testing.T) {
 
 func TestElevatorDistanceToCallingFloor(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	callingFloor := 3
 	direction := UP
 
 	req := NewRequest(callingFloor, direction)
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 
 	distance := el.Distance(req)
 
@@ -153,12 +153,12 @@ func TestElevatorDistanceToCallingFloor(t *testing.T) {
 
 func TestElevatorPriorityOfGoals(t *testing.T) {
 	startingFloor := 3
-	elevatorId := 1
+	elevatorID := 1
 
 	reqHighPriority := NewRequest(7, UP)
 	lowerPriority := NewRequest(2, DOWN)
 
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 
 	el.AddGoal(reqHighPriority, 15)
 	el.AddGoal(lowerPriority, 1)
@@ -176,11 +176,11 @@ func TestElevatorPriorityOfGoals(t *testing.T) {
 
 func TestElevatorDoesntMoveIfCurrentFloorIsGoalFloor(t *testing.T) {
 	startingFloor := 0
-	elevatorId := 1
+	elevatorID := 1
 
 	reqHighPriority := NewRequest(0, DOWN)
 
-	el := NewElevator(elevatorId, startingFloor)
+	el := NewElevator(elevatorID, startingFloor)
 
 	el.AddGoal(reqHighPriority, 15)
 

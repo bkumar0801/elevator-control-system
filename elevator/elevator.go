@@ -2,6 +2,7 @@ package elevator
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/elevator-control-system/queue"
 )
@@ -17,6 +18,7 @@ const (
 Elevator ...
 */
 type Elevator struct {
+	sync.RWMutex
 	ID           int
 	CurrentFloor int
 	Goals        *queue.PriorityQueue
@@ -61,6 +63,8 @@ func (e *Elevator) Distance(req *Request) int {
 AddGoal ...
 */
 func (e *Elevator) AddGoal(req *Request, priority float64) {
+	e.Lock()
+	defer e.Unlock()
 
 	if req.Floor == e.CurrentFloor {
 		return
@@ -71,6 +75,8 @@ func (e *Elevator) AddGoal(req *Request, priority float64) {
 }
 
 func (e *Elevator) move(goalFloor int) {
+	e.Lock()
+	defer e.Unlock()
 
 	if goalFloor > e.CurrentFloor {
 		e.Direction = UP
