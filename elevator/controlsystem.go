@@ -4,6 +4,12 @@ import (
 	"math"
 )
 
+/* FB ... EB */
+const (
+	FB = 0 //FloorButton
+	EB = 1 //ElevatorButton
+)
+
 /*
 ControlSystemInterface ...
 */
@@ -82,7 +88,7 @@ func (cs *ControlSystem) AddElevator(elevator *Elevator) {
 /*
 PickUp ...
 */
-func (cs *ControlSystem) PickUp(floor, direction int) {
+func (cs *ControlSystem) PickUp(floor, direction, device, id int) {
 	req := NewRequest(floor, direction)
 
 	highestScore := 0.0
@@ -90,8 +96,12 @@ func (cs *ControlSystem) PickUp(floor, direction int) {
 
 	for _, elevator := range cs.Elevators {
 		score := calculateSuitabilityScore(cs.MaxFloors, elevator, req)
+
 		if score > highestScore {
 			highestScore = score
+			chosenElevator = elevator
+		}
+		if device == EB && id == elevator.ID {
 			chosenElevator = elevator
 		}
 	}

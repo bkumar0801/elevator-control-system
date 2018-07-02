@@ -43,7 +43,7 @@ func TestControlSystem(t *testing.T) {
 
 	cs := NewConstrolSystem(maxElevators, maxFloors)
 	cs.AddElevator(NewElevator(0, 0))
-	cs.PickUp(2, UP)
+	cs.PickUp(2, UP, FB, 1)
 	cs.Step(1)
 
 	csStatus := ControlSystemStatus([]*Elevator{expectedElevator})
@@ -72,10 +72,10 @@ func TestRequestScoring(t *testing.T) {
 	cs := NewConstrolSystem(maxElevators, numOfFloors)
 	cs.AddElevator(NewElevator(0, 0))
 	cs.AddElevator(NewElevator(1, 0))
-	cs.PickUp(5, DOWN)
+	cs.PickUp(5, DOWN, FB, 1)
 	cs.Step(5)
 
-	cs.PickUp(4, DOWN)
+	cs.PickUp(4, DOWN, FB, 1)
 	cs.Step(5)
 
 	elevators := cs.Status()
