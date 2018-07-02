@@ -12,7 +12,7 @@ func main() {
 	cs.AddElevator(elv.NewElevator(100, 0))
 	cs.AddElevator(elv.NewElevator(200, 0))
 
-	floorButton1 := &client.ElevatorButton{
+	floorButton1 := &client.FloorButton{
 		Pickup: client.Request{
 			PickupFloor: 3,
 			Direction:   elv.UP,
@@ -23,7 +23,7 @@ func main() {
 		},
 	}
 
-	floorButton2 := &client.ElevatorButton{
+	floorButton2 := &client.FloorButton{
 		Pickup: client.Request{
 			PickupFloor: 4,
 			Direction:   elv.UP,
@@ -34,7 +34,7 @@ func main() {
 		},
 	}
 
-	floorButton3 := &client.ElevatorButton{
+	floorButton3 := &client.FloorButton{
 		Pickup: client.Request{
 			PickupFloor: 5,
 			Direction:   elv.UP,
@@ -45,7 +45,7 @@ func main() {
 		},
 	}
 
-	floorButton4 := &client.ElevatorButton{
+	floorButton4 := &client.FloorButton{
 		Pickup: client.Request{
 			PickupFloor: 2,
 			Direction:   elv.DOWN,
